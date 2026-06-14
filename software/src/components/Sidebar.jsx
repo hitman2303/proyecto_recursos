@@ -1,79 +1,39 @@
 import { Link } from "react-router-dom";
 
-import {
-  FaHome,
-  FaBook,
-  FaGamepad,
-  FaClock,
-  FaChalkboardTeacher
-} from "react-icons/fa";
-
-export default function Sidebar() {
-
-  const links = [
-    {
-      name: "Inicio",
-      path: "/",
-      icon: <FaHome />
-    },
-
-    {
-      name: "Historia",
-      path: "/historia",
-      icon: <FaBook />
-    },
-
-    {
-      name: "Timeline",
-      path: "/timeline",
-      icon: <FaClock />
-    },
-
-    {
-      name: "Juegos",
-      path: "/juegos",
-      icon: <FaGamepad />
-    },
-
-    {
-      name: "Docente",
-      path: "/docente",
-      icon: <FaChalkboardTeacher />
-    },
-  ];
-
+function Sidebar() {
   return (
-    <aside className="w-72 bg-gray-900 border-r border-gray-800 p-6">
+    <aside className="w-64 min-h-screen border-r p-4">
 
-      <h1 className="text-3xl font-bold mb-10">
-        Historia App
-      </h1>
+      <h2 className="font-bold text-xl mb-6">
+        Historia Argentina
+      </h2>
 
-      <nav className="flex flex-col gap-4">
+      <nav className="flex flex-col gap-3">
 
-        {links.map((link, index) => (
+        <Link to="/home">
+          Inicio
+        </Link>
 
-          <Link
-            key={index}
-            to={link.path}
-            className="
-              flex items-center gap-4
-              p-4 rounded-xl
-              bg-gray-800 hover:bg-blue-600
-              transition-all duration-300
-            "
-          >
+        <Link to="/quiz">
+          Quiz
+        </Link>
 
-            {link.icon}
+        <Link to="/timeline">
+          Línea de Tiempo
+        </Link>
 
-            <span>{link.name}</span>
+        <Link to="/juegos">
+          Juegos
+        </Link>
 
-          </Link>
-
-        ))}
+        <Link to="/acerca">
+          Acerca de
+        </Link>
 
       </nav>
 
     </aside>
   );
 }
+
+export default Sidebar;

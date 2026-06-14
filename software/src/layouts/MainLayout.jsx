@@ -1,16 +1,17 @@
 import Sidebar from "../components/Sidebar";
 
-export default function MainLayout({ children }) {
-
+function MainLayout({ children }) {
   return (
-    <div className="flex bg-gray-950 text-white min-h-screen">
+    <div className="flex">
 
       <Sidebar />
 
-      <main className="flex-1 p-10 overflow-y-auto">
+      <main className="flex-1 p-6">
         {children}
       </main>
 
     </div>
   );
 }
+
+export default MainLayout;
