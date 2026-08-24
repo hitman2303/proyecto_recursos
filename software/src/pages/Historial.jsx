@@ -21,26 +21,60 @@ function Historial() {
         <p>No hay intentos registrados.</p>
       ) : (
         <table className="w-full border">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Puntaje</th>
-              <th>Porcentaje</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {intentos.map((intento, index) => (
-              <tr key={index}>
-                <td>{intento.fecha}</td>
-                <td>
-                  {intento.puntaje}/{intento.total}
-                </td>
-                <td>{intento.porcentaje}%</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  <thead>
+
+    <tr>
+
+      <th className="border p-2">
+        Alumno
+      </th>
+
+      <th className="border p-2">
+        Fecha
+      </th>
+
+      <th className="border p-2">
+        Puntaje
+      </th>
+
+      <th className="border p-2">
+        Porcentaje
+      </th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    {intentos.map((intento, index) => (
+
+      <tr key={index}>
+
+        <td className="border p-2">
+          {intento.nombre || "Alumno"}
+        </td>
+
+        <td className="border p-2">
+          {intento.fecha}
+        </td>
+
+        <td className="border p-2">
+          {intento.puntaje}/{intento.total}
+        </td>
+
+        <td className="border p-2">
+          {intento.porcentaje}%
+        </td>
+
+      </tr>
+
+    ))}
+
+  </tbody>
+
+</table>
       )}
     </div>
   );

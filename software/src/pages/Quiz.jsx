@@ -47,12 +47,18 @@ function Quiz() {
       const porcentaje =
         (score / questions.length) * 100;
 
-      const nuevoIntento = {
-        puntaje: score,
-        total: questions.length,
-        porcentaje: porcentaje.toFixed(0),
-        fecha: new Date().toLocaleDateString(),
-      };
+     const usuario =
+  JSON.parse(localStorage.getItem("usuario")) || {
+    nombre: "Alumno"
+  };
+
+const nuevoIntento = {
+  nombre: usuario.nombre,
+  puntaje: score,
+  total: questions.length,
+  porcentaje: porcentaje.toFixed(0),
+  fecha: new Date().toLocaleDateString(),
+};
 
       const intentosGuardados =
         JSON.parse(
