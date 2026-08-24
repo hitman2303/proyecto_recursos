@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
-
+import LogoutButton from "./LogoutButton";
 function Sidebar() {
+
+  const usuario =
+  JSON.parse(
+    localStorage.getItem("usuario")
+  );
+
   return (
     <aside className="w-64 min-h-screen border-r p-4">
 
@@ -10,28 +16,43 @@ function Sidebar() {
 
       <nav className="flex flex-col gap-3">
 
-        <Link to="/home">
-          Inicio
-        </Link>
+      {usuario?.tipo === "alumno" && (
+  <>
+    <Link to="/home">
+      Inicio
+    </Link>
 
-        <Link to="/quiz">
-          Quiz
-        </Link>
+    <Link to="/historia">
+      Historia
+    </Link>
 
-        <Link to="/timeline">
-          Línea de Tiempo
-        </Link>
+    <Link to="/timeline">
+      Línea de tiempo
+    </Link>
 
-        <Link to="/juegos">
-          Juegos
-        </Link>
+    <Link to="/quiz">
+      Quiz
+    </Link>
 
-        <Link to="/acerca">
-          Acerca de
-        </Link>
-        <Link to="/historial">
-  Historial
-</Link>
+    <Link to="/juegos">
+      Juegos
+    </Link>
+
+    <Link to="/historial">
+      Mi historial
+    </Link>
+  </>
+)}
+
+{usuario?.tipo === "docente" && (
+  <>
+    <Link to="/docente">
+      Panel Docente
+    </Link>
+  </>
+)}
+
+<LogoutButton />
       </nav>
 
     </aside>

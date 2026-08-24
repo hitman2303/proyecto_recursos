@@ -11,27 +11,91 @@ import Acerca from "./pages/Acerca";
 import Historia from "./pages/Historia";
 import Docente from "./pages/Docente";
 import Historial from "./pages/Historial";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <MainLayout>
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* ===================== */}
+        {/* RUTAS ALUMNO */}
+        {/* ===================== */}
 
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute role="alumno">
+              <Home />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/quiz" element={<Quiz />} />
+        <Route
+          path="/historia"
+          element={
+            <ProtectedRoute role="alumno">
+              <Historia />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/timeline" element={<Timeline />} />
+        <Route
+          path="/quiz"
+          element={
+            <ProtectedRoute role="alumno">
+              <Quiz />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/juegos" element={<Juegos />} />
+        <Route
+          path="/juegos"
+          element={
+            <ProtectedRoute role="alumno">
+              <Juegos />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/acerca" element={<Acerca />} />
+        <Route
+          path="/timeline"
+          element={
+            <ProtectedRoute role="alumno">
+              <Timeline />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/historia" element={<Historia />} />
+        <Route
+          path="/historial"
+          element={
+            <ProtectedRoute role="alumno">
+              <Historial />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/docente" element={<Docente />} />
+        <Route
+          path="/acerca"
+          element={
+            <ProtectedRoute role="alumno">
+              <Acerca />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/historial" element={<Historial />} />
+
+        {/* ===================== */}
+        {/* DOCENTE */}
+        {/* ===================== */}
+
+        <Route
+          path="/docente"
+          element={
+            <ProtectedRoute role="docente">
+              <Docente />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </MainLayout>
   );
