@@ -10,6 +10,7 @@ import Juegos from "./pages/Juegos";
 import Acerca from "./pages/Acerca";
 import Historia from "./pages/Historia";
 import Docente from "./pages/Docente";
+import Historial from "./pages/Historial";
 function App() {
   return (
     <MainLayout>
@@ -29,6 +30,8 @@ function App() {
         <Route path="/historia" element={<Historia />} />
 
         <Route path="/docente" element={<Docente />} />
+
+        <Route path="/historial" element={<Historial />} />
       </Routes>
     </MainLayout>
   );

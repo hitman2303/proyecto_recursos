@@ -29,7 +29,9 @@ function Sidebar() {
         <Link to="/acerca">
           Acerca de
         </Link>
-
+        <Link to="/historial">
+  Historial
+</Link>
       </nav>
 
     </aside>
