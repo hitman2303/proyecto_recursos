@@ -11,14 +11,34 @@ import Acerca from "./pages/Acerca";
 import Historia from "./pages/Historia";
 import Docente from "./pages/Docente";
 import Historial from "./pages/Historial";
+import OrdenarEventos from "./pages/OrdenarEventos"; 
 import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
+
   return (
-    <MainLayout>
-      <Routes>
-        {/* ===================== */}
-        {/* RUTAS ALUMNO */}
-        {/* ===================== */}
+
+    <Routes>
+
+      {/* ========================= */}
+      {/* LOGIN */}
+      {/* ========================= */}
+
+      <Route
+        path="/"
+        element={<Login />}
+      />
+
+
+      {/* ========================= */}
+      {/* APLICACIÓN */}
+      {/* ========================= */}
+
+      <Route element={<MainLayout />}>
+
+        {/* ========================= */}
+        {/* ALUMNO */}
+        {/* ========================= */}
 
         <Route
           path="/home"
@@ -39,24 +59,6 @@ function App() {
         />
 
         <Route
-          path="/quiz"
-          element={
-            <ProtectedRoute role="alumno">
-              <Quiz />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/juegos"
-          element={
-            <ProtectedRoute role="alumno">
-              <Juegos />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
           path="/timeline"
           element={
             <ProtectedRoute role="alumno">
@@ -65,6 +67,35 @@ function App() {
           }
         />
 
+        <Route
+          path="/quiz"
+          element={
+            <ProtectedRoute role="alumno">
+              <Quiz />
+            </ProtectedRoute>
+          }
+        />
+          {/* ========================= */}
+{/* JUEGOS */}
+{/* ========================= */}
+
+<Route
+  path="/juegos"
+  element={
+    <ProtectedRoute role="alumno">
+      <Juegos />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/juegos/ordenar-eventos"
+  element={
+    <ProtectedRoute role="alumno">
+      <OrdenarEventos />
+    </ProtectedRoute>
+  }
+/>
         <Route
           path="/historial"
           element={
@@ -84,9 +115,9 @@ function App() {
         />
 
 
-        {/* ===================== */}
+        {/* ========================= */}
         {/* DOCENTE */}
-        {/* ===================== */}
+        {/* ========================= */}
 
         <Route
           path="/docente"
@@ -96,9 +127,13 @@ function App() {
             </ProtectedRoute>
           }
         />
-      </Routes>
-    </MainLayout>
+
+      </Route>
+
+    </Routes>
+
   );
+
 }
 
 export default App;

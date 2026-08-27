@@ -1,62 +1,86 @@
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
+
 function Sidebar() {
 
   const usuario =
-  JSON.parse(
-    localStorage.getItem("usuario")
-  );
+    JSON.parse(
+      localStorage.getItem("usuario")
+    );
 
   return (
-    <aside className="w-64 min-h-screen border-r p-4">
+
+    <aside className="w-64 min-h-screen border-r p-4 flex flex-col">
 
       <h2 className="font-bold text-xl mb-6">
         Historia Argentina
       </h2>
 
+
       <nav className="flex flex-col gap-3">
 
-      {usuario?.tipo === "alumno" && (
-  <>
-    <Link to="/home">
-      Inicio
-    </Link>
+        {/* ALUMNO */}
 
-    <Link to="/historia">
-      Historia
-    </Link>
+        {usuario?.tipo === "alumno" && (
+          <>
+            <Link to="/home">
+              Inicio
+            </Link>
 
-    <Link to="/timeline">
-      Línea de tiempo
-    </Link>
+            <Link to="/historia">
+              Historia
+            </Link>
 
-    <Link to="/quiz">
-      Quiz
-    </Link>
+            <Link to="/timeline">
+              Línea de tiempo
+            </Link>
 
-    <Link to="/juegos">
-      Juegos
-    </Link>
+            <Link to="/quiz">
+              Quiz
+            </Link>
 
-    <Link to="/historial">
-      Mi historial
-    </Link>
-  </>
-)}
+            <Link to="/juegos">
+              Juegos
+            </Link>
 
-{usuario?.tipo === "docente" && (
-  <>
-    <Link to="/docente">
-      Panel Docente
-    </Link>
-  </>
-)}
+            <Link to="/historial">
+              Mi historial
+            </Link>
 
-<LogoutButton />
+            <Link to="/acerca">
+              Acerca de
+            </Link>
+           
+          </>
+          
+        )}
+
+
+        {/* DOCENTE */}
+
+        {usuario?.tipo === "docente" && (
+          <>
+            <Link to="/docente">
+              Panel Docente
+            </Link>
+          </>
+        )}
+
       </nav>
 
+
+      {/* CERRAR SESIÓN */}
+
+      <div className="mt-auto pt-6">
+
+        <LogoutButton />
+
+      </div>
+
     </aside>
+
   );
+
 }
 
 export default Sidebar;

@@ -20,84 +20,104 @@ function Docente() {
   // ESTADÍSTICAS
   // =========================
 
-  const totalIntentos = intentos.length;
+  const cantidadIntentos =
+    intentos.length;
+
 
   const promedio =
-    totalIntentos > 0
-      ? intentos.reduce(
-          (total, intento) =>
-            total + Number(intento.porcentaje),
-          0
-        ) / totalIntentos
+    cantidadIntentos > 0
+      ? (
+          intentos.reduce(
+            (total, intento) =>
+              total + Number(intento.porcentaje),
+            0
+          ) / cantidadIntentos
+        ).toFixed(0)
       : 0;
 
+
   const mejorResultado =
-    totalIntentos > 0
+    cantidadIntentos > 0
       ? Math.max(
           ...intentos.map(
-            (intento) =>
+            intento =>
               Number(intento.porcentaje)
           )
         )
       : 0;
 
 
+  const peorResultado =
+    cantidadIntentos > 0
+      ? Math.min(
+          ...intentos.map(
+            intento =>
+              Number(intento.porcentaje)
+          )
+        )
+      : 0;
+
+const alumnos = [
+  ...new Set(
+    intentos.map(
+      intento => intento.nombre
+    )
+  )
+];
+const [alumnoSeleccionado, setAlumnoSeleccionado] =
+  useState("todos");
+  const intentosFiltrados =
+  alumnoSeleccionado === "todos"
+    ? intentos
+    : intentos.filter(
+        intento =>
+          intento.nombre === alumnoSeleccionado
+      );
   return (
 
     <div className="p-6">
 
-      {/* TÍTULO */}
+      <h1 className="text-3xl font-bold mb-2">
+        Panel Docente
+      </h1>
 
-      <div className="mb-8">
-
-        <h1 className="text-3xl font-bold">
-          Panel Docente
-        </h1>
-
-        <p className="text-gray-500 mt-2">
-          Seguimiento de los resultados de los alumnos
-        </p>
-
-      </div>
+      <p className="text-gray-500 mb-8">
+        Seguimiento del rendimiento de los alumnos
+      </p>
 
 
       {/* ========================= */}
-      {/* TARJETAS DE ESTADÍSTICAS */}
+      {/* TARJETAS */}
       {/* ========================= */}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
 
-        {/* INTENTOS */}
 
         <div className="border rounded-xl p-5 shadow-sm">
 
           <p className="text-gray-500">
-            Intentos realizados
+            Intentos
           </p>
 
-          <p className="text-3xl font-bold mt-2">
-            {totalIntentos}
+          <p className="text-3xl font-bold">
+            {cantidadIntentos}
           </p>
 
         </div>
 
 
-        {/* PROMEDIO */}
-
         <div className="border rounded-xl p-5 shadow-sm">
 
           <p className="text-gray-500">
-            Promedio general
+            Promedio
           </p>
 
-          <p className="text-3xl font-bold mt-2">
-            {promedio.toFixed(0)}%
+          <p className="text-3xl font-bold">
+            {promedio}%
           </p>
 
         </div>
 
-
-        {/* MEJOR */}
 
         <div className="border rounded-xl p-5 shadow-sm">
 
@@ -105,25 +125,69 @@ function Docente() {
             Mejor resultado
           </p>
 
-          <p className="text-3xl font-bold mt-2">
+          <p className="text-3xl font-bold">
             {mejorResultado}%
+          </p>
+
+        </div>
+
+
+        <div className="border rounded-xl p-5 shadow-sm">
+
+          <p className="text-gray-500">
+            Resultado más bajo
+          </p>
+
+          <p className="text-3xl font-bold">
+            {peorResultado}%
           </p>
 
         </div>
 
       </div>
 
+<div className="mb-6">
 
+  <label className="block font-semibold mb-2">
+    Filtrar por alumno
+  </label>
+
+  <select
+    value={alumnoSeleccionado}
+    onChange={(e) =>
+      setAlumnoSeleccionado(e.target.value)
+    }
+    className="border rounded-lg p-2"
+  >
+
+    <option value="todos">
+      Todos los alumnos
+    </option>
+
+    {alumnos.map(
+      alumno => (
+        <option
+          key={alumno}
+          value={alumno}
+        >
+          {alumno}
+        </option>
+      )
+    )}
+
+  </select>
+
+</div>
       {/* ========================= */}
       {/* TABLA */}
       {/* ========================= */}
 
       <div className="border rounded-xl overflow-hidden">
 
-        <div className="p-5 border-b">
+        <div className="p-4 border-b">
 
           <h2 className="text-xl font-bold">
-            Historial de resultados
+            Historial de evaluaciones
           </h2>
 
         </div>
@@ -131,120 +195,74 @@ function Docente() {
 
         {intentos.length === 0 ? (
 
-          <div className="p-6">
-
-            <p className="text-gray-500">
-              Todavía no hay resultados registrados.
-            </p>
-
-          </div>
+          <p className="p-6 text-gray-500">
+            Todavía no hay evaluaciones registradas.
+          </p>
 
         ) : (
 
-          <div className="overflow-x-auto">
+          <table className="w-full">
 
-            <table className="w-full">
+            <thead>
 
-              <thead>
+              <tr className="border-b">
 
-                <tr className="border-b">
+                <th className="text-left p-4">
+                  Alumno
+                </th>
 
-                  <th className="text-left p-4">
-                    Alumno
-                  </th>
-                  <th className="text-left p-4">
-                    Fecha
-                  </th>
+                <th className="text-left p-4">
+                  Puntaje
+                </th>
 
-                  <th className="text-left p-4">
-                    Puntaje
-                  </th>
+                <th className="text-left p-4">
+                  Porcentaje
+                </th>
 
-                  <th className="text-left p-4">
-                    Porcentaje
-                  </th>
+                <th className="text-left p-4">
+                  Fecha
+                </th>
 
-                  <th className="text-left p-4">
-                    Desempeño
-                  </th>
+              </tr>
 
-                </tr>
-
-              </thead>
+            </thead>
 
 
-              <tbody>
+            <tbody>
 
-                {intentos.map(
-                  (intento, index) => {
+              {intentos.map(
+                (intento, index) => (
 
-                    const porcentaje =
-                      Number(
-                        intento.porcentaje
-                      );
+                  <tr
+                    key={index}
+                    className="border-b"
+                  >
 
+                    <td className="p-4">
+                      {intento.nombre}
+                    </td>
 
-                    let desempeño = "";
+                    <td className="p-4">
+                      {intento.puntaje}/
+                      {intento.total}
+                    </td>
 
-                    if (porcentaje >= 80) {
+                    <td className="p-4">
+                      {intento.porcentaje}%
+                    </td>
 
-                      desempeño =
-                        "Excelente";
+                    <td className="p-4">
+                      {intento.fecha}
+                    </td>
 
-                    } else if (
-                      porcentaje >= 60
-                    ) {
+                  </tr>
 
-                      desempeño =
-                        "Bueno";
+                )
+              )}
 
-                    } else {
+            </tbody>
 
-                      desempeño =
-                        "Necesita reforzar";
-
-                    }
-
-
-                    return (
-
-                      <tr
-                        key={index}
-                        className="border-b"
-                      >
-                        <td className="p-4">
-                          {intento.nombre || "Alumno"}
-                        </td>
-
-                        <td className="p-4">
-                          {intento.fecha}
-                        </td>
-
-                        <td className="p-4">
-                          {intento.puntaje}/
-                          {intento.total}
-                        </td>
-
-                        <td className="p-4">
-                          {porcentaje}%
-                        </td>
-
-                        <td className="p-4">
-                          {desempeño}
-                        </td>
-
-                      </tr>
-
-                    );
-
-                  }
-                )}
-
-              </tbody>
-
-            </table>
-
-          </div>
+          </table>
 
         )}
 
@@ -253,6 +271,7 @@ function Docente() {
     </div>
 
   );
+
 }
 
 export default Docente;

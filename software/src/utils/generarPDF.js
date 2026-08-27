@@ -1,36 +1,65 @@
 import jsPDF from "jspdf";
 
-export const generarPDF = (puntaje, total) => {
+export function generarPDF(datos) {
 
   const doc = new jsPDF();
 
   doc.setFontSize(20);
 
   doc.text(
-    "Historia Argentina 1930-1982",
+    "Proyecto Historia Argentina",
     20,
-    20
+    25
   );
 
   doc.setFontSize(14);
 
   doc.text(
-    `Resultado del Quiz`,
+    "Evaluación de Historia Argentina",
     20,
     40
   );
 
+  doc.setFontSize(12);
+
   doc.text(
-    `Puntaje: ${puntaje}/${total}`,
+    `Alumno: ${datos.nombre}`,
     20,
-    55
+    60
   );
 
   doc.text(
-    `Fecha: ${new Date().toLocaleDateString()}`,
+    `Fecha: ${datos.fecha}`,
     20,
     70
   );
 
-  doc.save("resultado-quiz.pdf");
-};
+  doc.text(
+    `Puntaje: ${datos.puntaje}/${datos.total}`,
+    20,
+    85
+  );
+
+  doc.text(
+    `Porcentaje: ${datos.porcentaje}%`,
+    20,
+    95
+  );
+
+  doc.text(
+    `Desempeño: ${datos.desempeño}`,
+    20,
+    110
+  );
+
+  doc.text(
+    "Proyecto pedagógico - Profesorado",
+    20,
+    140
+  );
+
+  doc.save(
+    `resultado-${datos.nombre}.pdf`
+  );
+
+}

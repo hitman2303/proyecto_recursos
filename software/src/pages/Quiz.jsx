@@ -39,43 +39,51 @@ function Quiz() {
   const finalizarQuiz = () => {
     setShowResult(true);
   };
-
   useEffect(() => {
 
-    if (showResult && !resultadoGuardado) {
+  if (showResult) {
 
-      const porcentaje =
-        (score / questions.length) * 100;
+    const porcentaje =
+      (score / questions.length) * 100;
 
-     const usuario =
-  JSON.parse(localStorage.getItem("usuario")) || {
-    nombre: "Alumno"
-  };
-
-const nuevoIntento = {
-  nombre: usuario.nombre,
-  puntaje: score,
-  total: questions.length,
-  porcentaje: porcentaje.toFixed(0),
-  fecha: new Date().toLocaleDateString(),
-};
-
-      const intentosGuardados =
-        JSON.parse(
-          localStorage.getItem("historialQuiz")
-        ) || [];
-
-      intentosGuardados.push(nuevoIntento);
-
-      localStorage.setItem(
-        "historialQuiz",
-        JSON.stringify(intentosGuardados)
+    // Obtener usuario actual
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
       );
 
-      setResultadoGuardado(true);
-    }
+    const nuevoIntento = {
 
-  }, [showResult, score, resultadoGuardado]);
+      nombre:
+        usuario?.nombre || "Alumno",
+
+      puntaje: score,
+
+      total: questions.length,
+
+      porcentaje:
+        porcentaje.toFixed(0),
+
+      fecha:
+        new Date().toLocaleDateString(),
+
+    };
+
+    const intentosGuardados =
+      JSON.parse(
+        localStorage.getItem("historialQuiz")
+      ) || [];
+
+    intentosGuardados.push(nuevoIntento);
+
+    localStorage.setItem(
+      "historialQuiz",
+      JSON.stringify(intentosGuardados)
+    );
+
+  }
+
+}, [showResult, score]);
 
 
   // =========================
@@ -136,20 +144,31 @@ const nuevoIntento = {
               {mensaje}
             </strong>
           </p>
+<button
+  onClick={() =>
+    generarPDF({
+      nombre:
+        JSON.parse(
+          localStorage.getItem("usuario")
+        )?.nombre || "Alumno",
 
-          <button
-            onClick={() =>
-              generarPDF({
-                puntaje: score,
-                total: questions.length,
-                porcentaje: porcentaje.toFixed(0),
-                fecha: new Date().toLocaleDateString()
-              })
-            }
-            className="mt-6 border rounded-lg px-4 py-2"
-          >
-            Descargar PDF
-          </button>
+      puntaje: score,
+
+      total: questions.length,
+
+      porcentaje:
+        porcentaje.toFixed(0),
+
+      desempeño: mensaje,
+
+      fecha:
+        new Date().toLocaleDateString()
+    })
+  }
+  className="mt-6 bg-black text-white px-6 py-3 rounded-lg"
+>
+  Descargar resultado PDF
+</button>
 
         </div>
 
