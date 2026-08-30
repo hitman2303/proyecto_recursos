@@ -11,8 +11,14 @@ import Acerca from "./pages/Acerca";
 import Historia from "./pages/Historia";
 import Docente from "./pages/Docente";
 import Historial from "./pages/Historial";
-import OrdenarEventos from "./pages/OrdenarEventos"; 
+
+import QuienSoy from "./pages/QuienSoy";
+
+// Si tenés este juego:
+import OrdenarEventos from "./pages/OrdenarEventos";
+
 import ProtectedRoute from "./components/ProtectedRoute";
+
 
 function App() {
 
@@ -31,104 +37,151 @@ function App() {
 
 
       {/* ========================= */}
-      {/* APLICACIÓN */}
+      {/* ALUMNO */}
       {/* ========================= */}
 
-      <Route element={<MainLayout />}>
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute role="alumno">
 
-        {/* ========================= */}
-        {/* ALUMNO */}
-        {/* ========================= */}
-
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute role="alumno">
+            <MainLayout>
               <Home />
-            </ProtectedRoute>
-          }
-        />
+            </MainLayout>
 
-        <Route
-          path="/historia"
-          element={
-            <ProtectedRoute role="alumno">
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/historia"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
               <Historia />
-            </ProtectedRoute>
-          }
-        />
+            </MainLayout>
 
-        <Route
-          path="/timeline"
-          element={
-            <ProtectedRoute role="alumno">
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/timeline"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
               <Timeline />
-            </ProtectedRoute>
-          }
-        />
+            </MainLayout>
 
-        <Route
-          path="/quiz"
-          element={
-            <ProtectedRoute role="alumno">
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/quiz"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
               <Quiz />
-            </ProtectedRoute>
-          }
-        />
-          {/* ========================= */}
-{/* JUEGOS */}
-{/* ========================= */}
+            </MainLayout>
 
-<Route
-  path="/juegos"
-  element={
-    <ProtectedRoute role="alumno">
-      <Juegos />
-    </ProtectedRoute>
-  }
-/>
+          </ProtectedRoute>
+        }
+      />
 
-<Route
-  path="/juegos/ordenar-eventos"
-  element={
-    <ProtectedRoute role="alumno">
-      <OrdenarEventos />
-    </ProtectedRoute>
-  }
-/>
-        <Route
-          path="/historial"
-          element={
-            <ProtectedRoute role="alumno">
+
+      <Route
+        path="/juegos"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
+              <Juegos />
+            </MainLayout>
+
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/juegos/ordenar-eventos"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
+              <OrdenarEventos />
+            </MainLayout>
+
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/juegos/quien-soy"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
+              <QuienSoy />
+            </MainLayout>
+
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/historial"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
               <Historial />
-            </ProtectedRoute>
-          }
-        />
+            </MainLayout>
 
-        <Route
-          path="/acerca"
-          element={
-            <ProtectedRoute role="alumno">
+          </ProtectedRoute>
+        }
+      />
+
+
+      <Route
+        path="/acerca"
+        element={
+          <ProtectedRoute role="alumno">
+
+            <MainLayout>
               <Acerca />
-            </ProtectedRoute>
-          }
-        />
+            </MainLayout>
+
+          </ProtectedRoute>
+        }
+      />
 
 
-        {/* ========================= */}
-        {/* DOCENTE */}
-        {/* ========================= */}
+      {/* ========================= */}
+      {/* DOCENTE */}
+      {/* ========================= */}
 
-        <Route
-          path="/docente"
-          element={
-            <ProtectedRoute role="docente">
+      <Route
+        path="/docente"
+        element={
+          <ProtectedRoute role="docente">
+
+            <MainLayout>
               <Docente />
-            </ProtectedRoute>
-          }
-        />
+            </MainLayout>
 
-      </Route>
+          </ProtectedRoute>
+        }
+      />
 
     </Routes>
 

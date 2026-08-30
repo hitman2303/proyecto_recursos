@@ -1,56 +1,128 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
 
-  const usuario = JSON.parse(
-    localStorage.getItem("usuario")
-  );
+  const navigate =
+    useNavigate();
+
+  const usuario =
+    JSON.parse(
+      localStorage.getItem("usuario")
+    );
 
   return (
-    <div className="p-10">
 
-      <h1 className="text-3xl font-bold">
-        Bienvenido
-      </h1>
+    <div className="space-y-8">
 
-      <h2 className="text-xl mb-6">
-        {usuario?.nombre}
-      </h2>
+      {/* BIENVENIDA */}
 
-      <div className="flex flex-col gap-3">
+      <div className="bg-white border rounded-2xl p-8 shadow-sm">
 
-        <Link
-          to="/quiz"
-          className="border p-3"
-        >
-          Quiz
-        </Link>
+        <p className="text-gray-500 mb-2">
+          Bienvenido/a
+        </p>
 
-        <Link
-          to="/timeline"
-          className="border p-3"
-        >
-          Línea de Tiempo
-        </Link>
+        <h1 className="text-4xl font-bold">
+          {usuario?.nombre || "Alumno"}
+        </h1>
 
-        <Link
-          to="/juegos"
-          className="border p-3"
-        >
-          Juegos
-        </Link>
+        <p className="text-gray-600 mt-4 max-w-2xl">
 
-        <Link
-          to="/acerca"
-          className="border p-3"
-        >
-          Acerca de
-        </Link>
+          Explorá los principales acontecimientos
+          de la Historia Argentina entre 1930 y
+          1982 mediante contenidos, actividades
+          y juegos interactivos.
+
+        </p>
+
+      </div>
+
+
+      {/* ACCESOS */}
+
+      <div>
+
+        <h2 className="text-2xl font-bold mb-4">
+          Continuar aprendiendo
+        </h2>
+
+
+        <div className="grid md:grid-cols-3 gap-5">
+
+
+          <button
+            onClick={() =>
+              navigate("/historia")
+            }
+            className="bg-white border rounded-2xl p-6 text-left hover:shadow-md transition"
+          >
+
+            <div className="text-3xl mb-3">
+              📚
+            </div>
+
+            <h3 className="font-bold text-lg">
+              Historia
+            </h3>
+
+            <p className="text-gray-500 mt-2">
+              Conocé los procesos históricos.
+            </p>
+
+          </button>
+
+
+          <button
+            onClick={() =>
+              navigate("/timeline")
+            }
+            className="bg-white border rounded-2xl p-6 text-left hover:shadow-md transition"
+          >
+
+            <div className="text-3xl mb-3">
+              🕐
+            </div>
+
+            <h3 className="font-bold text-lg">
+              Línea de tiempo
+            </h3>
+
+            <p className="text-gray-500 mt-2">
+              Explorá los acontecimientos.
+            </p>
+
+          </button>
+
+
+          <button
+            onClick={() =>
+              navigate("/quiz")
+            }
+            className="bg-white border rounded-2xl p-6 text-left hover:shadow-md transition"
+          >
+
+            <div className="text-3xl mb-3">
+              📝
+            </div>
+
+            <h3 className="font-bold text-lg">
+              Quiz
+            </h3>
+
+            <p className="text-gray-500 mt-2">
+              Poné a prueba tus conocimientos.
+            </p>
+
+          </button>
+
+        </div>
 
       </div>
 
     </div>
+
   );
+
 }
 
 export default Home;

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 
 function Sidebar() {
@@ -8,70 +8,139 @@ function Sidebar() {
       localStorage.getItem("usuario")
     );
 
+  const linkClass = ({ isActive }) =>
+    `
+      block px-4 py-3 rounded-xl transition
+      ${
+        isActive
+          ? "bg-black text-white"
+          : "hover:bg-gray-100"
+      }
+    `;
+
   return (
 
-    <aside className="w-64 min-h-screen border-r p-4 flex flex-col">
+    <aside className="w-64 min-h-screen bg-white border-r flex flex-col p-4">
 
-      <h2 className="font-bold text-xl mb-6">
-        Historia Argentina
-      </h2>
+      {/* LOGO */}
+
+      <div className="mb-10">
+
+        <h2 className="font-bold text-2xl">
+          Historia
+        </h2>
+
+        <p className="text-sm text-gray-500">
+          Argentina 1930 - 1982
+        </p>
+
+      </div>
 
 
-      <nav className="flex flex-col gap-3">
+      {/* USUARIO */}
 
-        {/* ALUMNO */}
+      {usuario && (
+
+        <div className="border rounded-xl p-3 mb-6 bg-gray-50">
+
+          <p className="font-semibold">
+            {usuario.nombre}
+          </p>
+
+          <p className="text-xs text-gray-500 capitalize">
+            {usuario.tipo}
+          </p>
+
+        </div>
+
+      )}
+
+
+      {/* NAVEGACIÓN */}
+
+      <nav className="flex flex-col gap-2 flex-1">
 
         {usuario?.tipo === "alumno" && (
+
           <>
-            <Link to="/home">
-              Inicio
-            </Link>
 
-            <Link to="/historia">
-              Historia
-            </Link>
+            <NavLink
+              to="/home"
+              className={linkClass}
+            >
+              🏠 Inicio
+            </NavLink>
 
-            <Link to="/timeline">
-              Línea de tiempo
-            </Link>
 
-            <Link to="/quiz">
-              Quiz
-            </Link>
+            <NavLink
+              to="/historia"
+              className={linkClass}
+            >
+              📚 Historia
+            </NavLink>
 
-            <Link to="/juegos">
-              Juegos
-            </Link>
 
-            <Link to="/historial">
-              Mi historial
-            </Link>
+            <NavLink
+              to="/timeline"
+              className={linkClass}
+            >
+              🕐 Línea de tiempo
+            </NavLink>
 
-            <Link to="/acerca">
-              Acerca de
-            </Link>
-           
+
+            <NavLink
+              to="/quiz"
+              className={linkClass}
+            >
+              📝 Quiz
+            </NavLink>
+
+
+            <NavLink
+              to="/juegos"
+              className={linkClass}
+            >
+              🎮 Juegos
+            </NavLink>
+
+
+            <NavLink
+              to="/historial"
+              className={linkClass}
+            >
+              📊 Mi historial
+            </NavLink>
+
+
+            <NavLink
+              to="/acerca"
+              className={linkClass}
+            >
+              ℹ️ Acerca del proyecto
+            </NavLink>
+
           </>
-          
+
         )}
 
 
-        {/* DOCENTE */}
-
         {usuario?.tipo === "docente" && (
-          <>
-            <Link to="/docente">
-              Panel Docente
-            </Link>
-          </>
+
+          <NavLink
+            to="/docente"
+            className={linkClass}
+          >
+            👨‍🏫 Panel docente
+          </NavLink>
+
         )}
 
       </nav>
 
 
-      {/* CERRAR SESIÓN */}
+      {/* LOGOUT */}
 
-      <div className="mt-auto pt-6">
+      <div className="pt-4 border-t">
 
         <LogoutButton />
 

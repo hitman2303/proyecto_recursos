@@ -1,15 +1,14 @@
 import Timer from "../components/Timer";
 import { questions } from "../data/quiz";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { generarPDF } from "../utils/generarPDF";
-
 function Quiz() {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [showResult, setShowResult] = useState(false);
-  const [resultadoGuardado, setResultadoGuardado] = useState(false);
+const [showResult, setShowResult] = useState(false);
 
+const resultadoGuardado = useRef(false);
   const handleAnswer = (option) => {
 
     const esCorrecta =
@@ -39,14 +38,18 @@ function Quiz() {
   const finalizarQuiz = () => {
     setShowResult(true);
   };
-  useEffect(() => {
+useEffect(() => {
 
-  if (showResult) {
+  if (
+    showResult &&
+    !resultadoGuardado.current
+  ) {
+
+    resultadoGuardado.current = true;
 
     const porcentaje =
       (score / questions.length) * 100;
 
-    // Obtener usuario actual
     const usuario =
       JSON.parse(
         localStorage.getItem("usuario")
@@ -57,9 +60,11 @@ function Quiz() {
       nombre:
         usuario?.nombre || "Alumno",
 
-      puntaje: score,
+      puntaje:
+        score,
 
-      total: questions.length,
+      total:
+        questions.length,
 
       porcentaje:
         porcentaje.toFixed(0),
@@ -69,16 +74,23 @@ function Quiz() {
 
     };
 
+
     const intentosGuardados =
       JSON.parse(
         localStorage.getItem("historialQuiz")
       ) || [];
 
-    intentosGuardados.push(nuevoIntento);
+
+    intentosGuardados.push(
+      nuevoIntento
+    );
+
 
     localStorage.setItem(
       "historialQuiz",
-      JSON.stringify(intentosGuardados)
+      JSON.stringify(
+        intentosGuardados
+      )
     );
 
   }
@@ -95,21 +107,35 @@ function Quiz() {
     const porcentaje =
       (score / questions.length) * 100;
 
-    let mensaje = "";
+   let mensaje = "";
+let feedback = "";
 
-    if (porcentaje >= 80) {
+if (porcentaje >= 80) {
 
-      mensaje = "Excelente";
+  mensaje = "Excelente";
 
-    } else if (porcentaje >= 60) {
+  feedback =
+    "Demostraste una muy buena comprensión de los procesos históricos trabajados. Lograste relacionar acontecimientos, períodos y protagonistas de la Historia Argentina.";
 
-      mensaje = "Bueno";
+}
 
-    } else {
+else if (porcentaje >= 60) {
 
-      mensaje = "Necesita reforzar contenidos";
+  mensaje = "Buen desempeño";
 
-    }
+  feedback =
+    "Comprendiste correctamente una parte importante de los contenidos trabajados. Te recomendamos revisar algunos acontecimientos históricos para fortalecer tus conocimientos.";
+
+}
+
+else {
+
+  mensaje = "Necesita reforzar contenidos";
+
+  feedback =
+    "Te recomendamos volver a consultar la sección de Historia y la Línea de Tiempo para reforzar los principales procesos, acontecimientos y personajes históricos antes de realizar nuevamente la actividad.";
+
+}
 
     return (
 
@@ -144,13 +170,29 @@ function Quiz() {
               {mensaje}
             </strong>
           </p>
+          <div className="mt-6 border rounded-xl p-5 bg-gray-50">
+
+  <h2 className="text-xl font-bold mb-3">
+    Devolución pedagógica
+  </h2>
+
+  <p className="text-gray-700">
+    {feedback}
+  </p>
+
+</div>
 <button
-  onClick={() =>
+  onClick={() => {
+
+    const usuario =
+      JSON.parse(
+        localStorage.getItem("usuario")
+      );
+
     generarPDF({
+
       nombre:
-        JSON.parse(
-          localStorage.getItem("usuario")
-        )?.nombre || "Alumno",
+        usuario?.nombre || "Alumno",
 
       puntaje: score,
 
@@ -159,17 +201,35 @@ function Quiz() {
       porcentaje:
         porcentaje.toFixed(0),
 
-      desempeño: mensaje,
+      desempeno:
+        mensaje,
+
+      feedback,
 
       fecha:
-        new Date().toLocaleDateString()
-    })
-  }
+        new Date().toLocaleDateString(),
+
+    });
+
+  }}
   className="mt-6 bg-black text-white px-6 py-3 rounded-lg"
 >
   Descargar resultado PDF
 </button>
+<button
+  onClick={() => {
 
+    setCurrentQuestion(0);
+    setScore(0);
+    setShowResult(false);
+
+    resultadoGuardado.current = false;
+
+  }}
+  className="mt-4 border px-6 py-3 rounded-lg"
+>
+  Realizar nuevamente
+</button>
         </div>
 
       </div>

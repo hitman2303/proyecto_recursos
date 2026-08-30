@@ -80,12 +80,13 @@ function Juegos() {
           </p>
 
           <button
-            disabled
-            className="bg-gray-300 text-gray-600 px-5 py-2 rounded-lg cursor-not-allowed"
-          >
-            Próximamente
-          </button>
-
+  onClick={() =>
+    navigate("/juegos/quien-soy")
+  }
+  className="bg-black text-white px-5 py-2 rounded-lg hover:opacity-80"
+>
+  Jugar
+</button>
         </div>
 
 

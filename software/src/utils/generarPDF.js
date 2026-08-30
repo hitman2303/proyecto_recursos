@@ -4,6 +4,10 @@ export function generarPDF(datos) {
 
   const doc = new jsPDF();
 
+  // =========================
+  // TÍTULO
+  // =========================
+
   doc.setFontSize(20);
 
   doc.text(
@@ -12,13 +16,23 @@ export function generarPDF(datos) {
     25
   );
 
+
+  // =========================
+  // SUBTÍTULO
+  // =========================
+
   doc.setFontSize(14);
 
   doc.text(
-    "Evaluación de Historia Argentina",
+    "Evaluación - Historia Argentina (1930 - 1982)",
     20,
     40
   );
+
+
+  // =========================
+  // DATOS
+  // =========================
 
   doc.setFontSize(12);
 
@@ -47,19 +61,63 @@ export function generarPDF(datos) {
   );
 
   doc.text(
-    `Desempeño: ${datos.desempeño}`,
+    `Desempeño: ${datos.desempeno}`,
     20,
-    110
+    105
   );
 
+
+  // =========================
+  // FEEDBACK
+  // =========================
+
+  doc.setFontSize(14);
+
   doc.text(
-    "Proyecto pedagógico - Profesorado",
+    "Devolución pedagógica",
+    20,
+    125
+  );
+
+
+  doc.setFontSize(11);
+
+  const feedbackDividido =
+    doc.splitTextToSize(
+      datos.feedback,
+      170
+    );
+
+  doc.text(
+    feedbackDividido,
     20,
     140
   );
 
-  doc.save(
-    `resultado-${datos.nombre}.pdf`
+
+  // =========================
+  // PIE
+  // =========================
+
+  doc.setFontSize(10);
+
+  doc.text(
+    "Proyecto pedagógico - Profesorado",
+    20,
+    270
   );
 
+
+  // =========================
+  // DESCARGA
+  // =========================
+
+const nombreArchivo =
+  datos.nombre
+    .replace(/\s+/g, "-")
+    .toLowerCase();
+
+doc.save(
+  `resultado-${nombreArchivo}.pdf`
+);
 }
