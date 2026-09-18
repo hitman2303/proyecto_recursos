@@ -11,7 +11,12 @@ node_modules
 dist
 dist-ssr
 *.local
+# Builds generados
+software/build/
+software/dist/
 
+# Electron
+software/release/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
