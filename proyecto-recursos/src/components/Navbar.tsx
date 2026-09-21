@@ -57,7 +57,12 @@ export default function Navbar() {
             >
               Historia
             </Link>
-
+            <Link 
+            to="/timeline"
+            className="hover:text-yellow-400 transition"
+            >
+            Línea de Tiempo
+            </Link>
             <Link
               to="/personajes"
               className="hover:text-yellow-400 transition"

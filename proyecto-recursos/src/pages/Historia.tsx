@@ -34,7 +34,37 @@ export default function Historia() {
 
       </section>
 
+      {/* =========================
+    ÍNDICE HISTÓRICO
+========================= */}
 
+<section className="bg-white border-b">
+
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
+
+    <h2 className="text-lg font-bold mb-4">
+      Recorrido histórico
+    </h2>
+
+    <div className="flex gap-2 overflow-x-auto pb-2">
+
+      {historia.map((periodo) => (
+
+        <a
+          key={periodo.id}
+          href={`#periodo-${periodo.id}`}
+          className="flex-shrink-0 bg-gray-100 hover:bg-gray-900 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition"
+        >
+          {periodo.anio}
+        </a>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
       {/* =========================
           CONTENIDO
       ========================= */}
@@ -45,10 +75,11 @@ export default function Historia() {
 
           {historia.map((periodo) => (
 
-            <article
-              key={periodo.id}
-              className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden"
-            >
+           <article
+  id={`periodo-${periodo.id}`}
+  key={periodo.id}
+  className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden scroll-mt-24"
+>
 
               {/* =========================
                   IMAGEN
