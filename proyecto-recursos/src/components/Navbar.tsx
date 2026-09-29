@@ -1,176 +1,53 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const [menuAbierto, setMenuAbierto] = useState(false);
-
-  const cerrarMenu = () => {
-    setMenuAbierto(false);
-  };
-
   return (
-    <nav className="bg-gray-900 text-white shadow-lg">
+    <nav className="bg-gray-900 text-white px-4 py-4 shadow-lg">
 
-      {/* CONTENEDOR PRINCIPAL */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
 
-        <div className="flex items-center justify-between min-h-16">
+        <Link
+          to="/"
+          className="font-bold text-xl hover:text-yellow-400"
+        >
+          Historia Argentina
+        </Link>
 
-          {/* LOGO / NOMBRE */}
-          <Link
-            to="/"
-            onClick={cerrarMenu}
-            className="font-bold text-base sm:text-lg md:text-xl whitespace-nowrap hover:text-yellow-400 transition"
-          >
-            Historia Argentina
+        <div className="flex flex-wrap gap-4 text-sm">
+
+          <Link to="/" className="hover:text-yellow-400">
+            Inicio
           </Link>
 
+          <Link to="/historia" className="hover:text-yellow-400">
+            Historia
+          </Link>
 
-          {/* BOTÓN MOBILE */}
-          <button
-            onClick={() => setMenuAbierto(!menuAbierto)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-800 transition"
-            aria-label="Abrir menú"
-            aria-expanded={menuAbierto}
-          >
-            {menuAbierto ? (
-              <span className="text-2xl">✕</span>
-            ) : (
-              <span className="text-2xl">☰</span>
-            )}
-          </button>
+          <Link to="/timeline" className="hover:text-yellow-400">
+            Línea de tiempo
+          </Link>
 
+          <Link to="/eventos" className="hover:text-yellow-400">
+            Eventos
+          </Link>
 
-          {/* MENÚ DESKTOP */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
+          <Link to="/personajes" className="hover:text-yellow-400">
+            Personajes
+          </Link>
 
-            <Link
-              to="/"
-              className="hover:text-yellow-400 transition"
-            >
-              Inicio
-            </Link>
+          <Link to="/recursos" className="hover:text-yellow-400">
+            Recursos
+          </Link>
 
-            <Link
-              to="/historia"
-              className="hover:text-yellow-400 transition"
-            >
-              Historia
-            </Link>
-            <Link 
-            to="/timeline"
-            className="hover:text-yellow-400 transition"
-            >
-            Línea de Tiempo
-            </Link>
-            <Link
-              to="/personajes"
-              className="hover:text-yellow-400 transition"
-            >
-              Personajes
-            </Link>
+          <Link to="/tutoriales" className="hover:text-yellow-400">
+            Tutoriales
+          </Link>
 
-            <Link
-              to="/eventos"
-              className="hover:text-yellow-400 transition"
-            >
-              Eventos
-            </Link>
-
-            <Link
-              to="/recursos"
-              className="hover:text-yellow-400 transition"
-            >
-              Recursos
-            </Link>
-
-            <Link
-              to="/tutoriales"
-              className="hover:text-yellow-400 transition"
-            >
-              Tutoriales
-            </Link>
-
-            <Link
-              to="/descargar"
-              className="hover:text-yellow-400 transition"
-            >
-              Descargar
-            </Link>
-
-          </div>
+          <Link to="/descargar" className="hover:text-yellow-400">
+            Descargar
+          </Link>
 
         </div>
-
-
-        {/* MENÚ MOBILE */}
-        {menuAbierto && (
-
-          <div className="md:hidden border-t border-gray-700 py-4">
-
-            <div className="flex flex-col gap-1">
-
-              <Link
-                to="/"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Inicio
-              </Link>
-
-              <Link
-                to="/historia"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Historia
-              </Link>
-
-              <Link
-                to="/personajes"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Personajes
-              </Link>
-
-              <Link
-                to="/eventos"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Eventos
-              </Link>
-
-              <Link
-                to="/recursos"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Recursos
-              </Link>
-
-              <Link
-                to="/tutoriales"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Tutoriales
-              </Link>
-
-              <Link
-                to="/descargar"
-                onClick={cerrarMenu}
-                className="px-3 py-3 rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition"
-              >
-                Descargar software
-              </Link>
-
-            </div>
-
-          </div>
-
-        )}
 
       </div>
 

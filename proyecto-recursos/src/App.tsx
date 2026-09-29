@@ -10,7 +10,7 @@ import Eventos from "./pages/Eventos";
 import Recursos from "./pages/Recursos";
 import Tutoriales from "./pages/Tutoriales";
 import Descargar from "./pages/Descargar";
-
+import Footer from "./components/Footer";
 export default function App() {
   return (
     <Router>
@@ -36,7 +36,7 @@ export default function App() {
         <Route path="/descargar" element={<Descargar />} />
 
       </Routes>
-
+      <Footer />
     </Router>
   );
 }

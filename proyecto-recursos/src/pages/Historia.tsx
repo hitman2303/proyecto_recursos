@@ -1,218 +1,309 @@
-import { historia } from "../data/historia";
+import { Link } from "react-router-dom";
 
 export default function Historia() {
   return (
     <div className="min-h-screen bg-gray-50">
 
       {/* =========================
-          ENCABEZADO
+          HEADER
       ========================= */}
 
-      <section className="bg-gray-900 text-white px-4 sm:px-6 py-10 sm:py-14 md:py-16">
+      <section className="bg-gray-900 text-white">
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
 
-          <p className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 mb-3">
-            Proyecto Historia Argentina
+          <p className="text-sm uppercase tracking-widest text-gray-400 mb-4">
+            Recorrido histórico
           </p>
 
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Historia Argentina
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300">
+          <p className="text-2xl text-gray-400 mb-6">
             1930 — 1982
           </p>
 
-          <p className="mt-4 sm:mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
+          <p className="text-gray-300 max-w-3xl text-lg leading-relaxed">
             Un recorrido por los principales procesos políticos,
-            sociales y económicos que atravesaron la Argentina entre
-            1930 y 1982.
+            sociales y económicos que atravesaron la Argentina durante
+            este período.
           </p>
 
         </div>
 
       </section>
 
+
       {/* =========================
-    ÍNDICE HISTÓRICO
-========================= */}
-
-<section className="bg-white border-b">
-
-  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
-
-    <h2 className="text-lg font-bold mb-4">
-      Recorrido histórico
-    </h2>
-
-    <div className="flex gap-2 overflow-x-auto pb-2">
-
-      {historia.map((periodo) => (
-
-        <a
-          key={periodo.id}
-          href={`#periodo-${periodo.id}`}
-          className="flex-shrink-0 bg-gray-100 hover:bg-gray-900 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition"
-        >
-          {periodo.anio}
-        </a>
-
-      ))}
-
-    </div>
-
-  </div>
-
-</section>
-      {/* =========================
-          CONTENIDO
+          INTRODUCCIÓN
       ========================= */}
 
-      <main className="max-w-6xl mx-auto px-3 sm:px-6 py-6 sm:py-10 md:py-12">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-14">
 
-        <div className="space-y-6 sm:space-y-8 md:space-y-12">
+        <div className="bg-white border rounded-2xl p-6 sm:p-8 shadow-sm mb-12">
 
-          {historia.map((periodo) => (
+          <h2 className="text-2xl font-bold mb-4">
+            Un período de profundas transformaciones
+          </h2>
 
-           <article
-  id={`periodo-${periodo.id}`}
-  key={periodo.id}
-  className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden scroll-mt-24"
->
+          <p className="text-gray-700 leading-relaxed text-lg">
+            Entre 1930 y 1982, la Argentina atravesó golpes de Estado,
+            gobiernos democráticos, transformaciones económicas,
+            conflictos sociales, cambios en las relaciones laborales
+            y períodos de fuerte inestabilidad política.
+          </p>
 
-              {/* =========================
-                  IMAGEN
-              ========================= */}
+          <p className="text-gray-700 leading-relaxed text-lg mt-4">
+            Comprender este período permite analizar cómo se
+            transformaron las instituciones, la sociedad y el papel
+            del Estado, hasta llegar a la Guerra de Malvinas y a la
+            crisis final de la última dictadura militar.
+          </p>
 
-              {periodo.imagen && (
-
-                <div className="w-full h-44 sm:h-56 md:h-80 overflow-hidden">
-
-                  <img
-                    src={periodo.imagen}
-                    alt={periodo.titulo}
-                    className="w-full h-full object-cover"
-                  />
-
-                </div>
-
-              )}
+        </div>
 
 
-              {/* =========================
-                  INFORMACIÓN
-              ========================= */}
+        {/* =========================
+            ETAPAS
+        ========================= */}
 
-              <div className="p-4 sm:p-6 md:p-10">
+        <div className="space-y-8">
 
-                {/* AÑO */}
 
-                <span className="inline-block bg-gray-900 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
+          {/* 1930 */}
 
-                  {periodo.anio}
+          <section className="bg-white border rounded-2xl p-6 sm:p-8 shadow-sm">
 
+            <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+
+              <div className="shrink-0">
+
+                <span className="inline-flex bg-gray-900 text-white px-4 py-2 rounded-full font-bold">
+                  1930
                 </span>
-
-
-                {/* TÍTULO */}
-
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-4">
-
-                  {periodo.titulo}
-
-                </h2>
-
-
-                {/* RESUMEN */}
-
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6 sm:mb-8">
-
-                  {periodo.resumen}
-
-                </p>
-
-
-                {/* CONTEXTO */}
-
-                <div className="mb-6 sm:mb-8">
-
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">
-
-                    Contexto histórico
-
-                  </h3>
-
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-
-                    {periodo.contexto}
-
-                  </p>
-
-                </div>
-
-
-                {/* ACONTECIMIENTOS */}
-
-                <div className="mb-6 sm:mb-8">
-
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-
-                    Acontecimientos principales
-
-                  </h3>
-
-                  <ul className="space-y-3">
-
-                    {periodo.acontecimientos.map(
-                      (acontecimiento, index) => (
-
-                        <li
-                          key={index}
-                          className="flex items-start gap-3 text-sm sm:text-base text-gray-700 leading-relaxed"
-                        >
-
-                          <span className="font-bold mt-0.5 flex-shrink-0">
-                            •
-                          </span>
-
-                          <span>
-                            {acontecimiento}
-                          </span>
-
-                        </li>
-
-                      )
-                    )}
-
-                  </ul>
-
-                </div>
-
-
-                {/* CONSECUENCIAS */}
-
-                <div className="border-l-4 border-gray-900 pl-3 sm:pl-5">
-
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">
-
-                    Consecuencias
-
-                  </h3>
-
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-
-                    {periodo.consecuencias}
-
-                  </p>
-
-                </div>
 
               </div>
 
-            </article>
+              <div>
 
-          ))}
+                <p className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                  Ruptura institucional
+                </p>
+
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Golpe de Estado de 1930
+                </h2>
+
+                <p className="text-gray-700 leading-relaxed">
+                  El golpe de Estado de 1930 representó la ruptura
+                  del orden democrático en Argentina. Las Fuerzas
+                  Armadas derrocaron al presidente Hipólito Yrigoyen
+                  e inauguraron una etapa caracterizada por la
+                  intervención militar en la vida política.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* DÉCADA INFAME */}
+
+          <section className="bg-white border rounded-2xl p-6 sm:p-8 shadow-sm">
+
+            <div className="flex flex-col sm:flex-row gap-5">
+
+              <span className="shrink-0 inline-flex h-fit bg-gray-900 text-white px-4 py-2 rounded-full font-bold">
+                1930–1943
+              </span>
+
+              <div>
+
+                <p className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                  Política y economía
+                </p>
+
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Década Infame
+                </h2>
+
+                <p className="text-gray-700 leading-relaxed">
+                  El período estuvo caracterizado por el fraude
+                  electoral, la corrupción y la exclusión de amplios
+                  sectores de la sociedad de la participación política.
+                  Al mismo tiempo, la economía argentina comenzó a
+                  experimentar importantes transformaciones vinculadas
+                  con el crecimiento de la industrialización.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* PERONISMO */}
+
+          <section className="bg-white border rounded-2xl p-6 sm:p-8 shadow-sm">
+
+            <div className="flex flex-col sm:flex-row gap-5">
+
+              <span className="shrink-0 inline-flex h-fit bg-gray-900 text-white px-4 py-2 rounded-full font-bold">
+                1946–1955
+              </span>
+
+              <div>
+
+                <p className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                  Política y sociedad
+                </p>
+
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Primer peronismo
+                </h2>
+
+                <p className="text-gray-700 leading-relaxed">
+                  El primer gobierno de Juan Domingo Perón produjo
+                  importantes transformaciones sociales y políticas.
+                  Se ampliaron derechos laborales, aumentó el
+                  protagonismo de los trabajadores y se fortaleció
+                  la intervención del Estado en la economía.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* 1955 */}
+
+          <section className="bg-white border rounded-2xl p-6 sm:p-8 shadow-sm">
+
+            <div className="flex flex-col sm:flex-row gap-5">
+
+              <span className="shrink-0 inline-flex h-fit bg-gray-900 text-white px-4 py-2 rounded-full font-bold">
+                1955
+              </span>
+
+              <div>
+
+                <p className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                  Ruptura política
+                </p>
+
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Revolución Libertadora
+                </h2>
+
+                <p className="text-gray-700 leading-relaxed">
+                  Un golpe militar derrocó a Juan Domingo Perón.
+                  El nuevo régimen proscribió al peronismo y comenzó
+                  una etapa de fuerte conflictividad política que
+                  continuaría durante los años siguientes.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* 1976 */}
+
+          <section className="bg-white border rounded-2xl p-6 sm:p-8 shadow-sm">
+
+            <div className="flex flex-col sm:flex-row gap-5">
+
+              <span className="shrink-0 inline-flex h-fit bg-gray-900 text-white px-4 py-2 rounded-full font-bold">
+                1976–1982
+              </span>
+
+              <div>
+
+                <p className="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                  Dictadura y terrorismo de Estado
+                </p>
+
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Última dictadura militar
+                </h2>
+
+                <p className="text-gray-700 leading-relaxed">
+                  El 24 de marzo de 1976 las Fuerzas Armadas
+                  derrocaron al gobierno de Isabel Perón y comenzó
+                  la última dictadura militar argentina. El régimen
+                  estuvo marcado por el terrorismo de Estado,
+                  la represión, la censura y las desapariciones
+                  forzadas.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          {/* MALVINAS */}
+
+          <section className="bg-gray-900 text-white rounded-2xl p-6 sm:p-8 shadow-lg">
+
+            <div className="flex flex-col sm:flex-row gap-5">
+
+              <span className="shrink-0 inline-flex h-fit bg-white text-gray-900 px-4 py-2 rounded-full font-bold">
+                1982
+              </span>
+
+              <div>
+
+                <p className="text-sm uppercase tracking-wider text-gray-400 font-semibold mb-2">
+                  Conflicto bélico
+                </p>
+
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Guerra de Malvinas
+                </h2>
+
+                <p className="text-gray-300 leading-relaxed">
+                  El conflicto con el Reino Unido comenzó el 2 de
+                  abril de 1982 y finalizó el 14 de junio con la
+                  rendición argentina. La derrota profundizó la crisis
+                  de la dictadura militar y aceleró el proceso que
+                  conduciría al retorno de la democracia.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+
+        {/* =========================
+            SIGUIENTE RECURSO
+        ========================= */}
+
+        <div className="mt-14 text-center">
+
+          <p className="text-gray-500 mb-4">
+            ¿Querés recorrer los acontecimientos cronológicamente?
+          </p>
+
+          <Link
+            to="/timeline"
+            className="inline-flex bg-gray-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-700 transition"
+          >
+            Explorar línea de tiempo →
+          </Link>
 
         </div>
 

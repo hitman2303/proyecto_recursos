@@ -4,23 +4,22 @@ export default function Personajes() {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* ENCABEZADO */}
+      {/* HERO */}
+      <section className="bg-gray-900 text-white px-4 sm:px-6 py-14">
 
-      <section className="bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
-
-          <p className="uppercase tracking-widest text-sm text-gray-400 mb-3">
-            Historia Argentina
+          <p className="text-sm uppercase tracking-widest text-gray-400 mb-3">
+            Protagonistas
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-5">
             Personajes históricos
           </h1>
 
-          <p className="text-gray-300 text-base sm:text-lg max-w-3xl leading-relaxed">
-            Conocé algunas de las figuras políticas y sociales más
-            importantes del período comprendido entre 1930 y 1982.
+          <p className="text-gray-300 max-w-3xl text-lg leading-relaxed">
+            Conocé a algunos de los principales protagonistas políticos
+            y sociales del período 1930-1982.
           </p>
 
         </div>
@@ -29,8 +28,7 @@ export default function Personajes() {
 
 
       {/* PERSONAJES */}
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-14">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -38,14 +36,22 @@ export default function Personajes() {
 
             <article
               key={personaje.id}
-              className="bg-white border rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300"
+              className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300"
             >
 
-              {/* CATEGORÍA */}
+              {/* IDENTIFICACIÓN */}
 
-              <span className="inline-block text-xs font-semibold uppercase tracking-wide bg-gray-100 px-3 py-1 rounded-full mb-4">
-                {personaje.categoria}
-              </span>
+              <div className="flex items-center justify-between gap-3 mb-5">
+
+                <span className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg">
+                  {personaje.nombre.charAt(0)}
+                </span>
+
+                <span className="text-xs font-semibold uppercase tracking-wide bg-gray-100 px-3 py-1 rounded-full text-gray-600">
+                  {personaje.categoria}
+                </span>
+
+              </div>
 
 
               {/* NOMBRE */}
@@ -57,14 +63,14 @@ export default function Personajes() {
 
               {/* PERÍODO */}
 
-              <p className="text-sm font-semibold text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 font-medium mb-5">
                 {personaje.periodo}
               </p>
 
 
               {/* DESCRIPCIÓN */}
 
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed">
                 {personaje.descripcion}
               </p>
 
