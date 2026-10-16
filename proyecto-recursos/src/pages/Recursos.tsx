@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { recursos } from "../data/recursos";
-
+import { materiales } from "../data/materiales";
 export default function Recursos() {
 
   const [categoria, setCategoria] = useState("Todos");
@@ -159,7 +159,93 @@ export default function Recursos() {
 
       </main>
 
+{/* =========================
+    MATERIALES DESCARGABLES
+========================= */}
 
+<section className="bg-white border-y py-16">
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
+    {/* ENCABEZADO */}
+
+    <div className="mb-10">
+
+      <p className="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-3">
+        Biblioteca digital
+      </p>
+
+      <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+        Materiales descargables
+      </h2>
+
+      <p className="text-gray-600 max-w-3xl leading-relaxed">
+        Descargá guías de estudio, cuadros comparativos,
+        actividades de análisis de fuentes y cuestionarios
+        para complementar tu aprendizaje.
+      </p>
+
+    </div>
+
+
+    {/* TARJETAS */}
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {materiales.map((material) => (
+
+        <article
+          key={material.id}
+          className="bg-gray-50 border rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col"
+        >
+
+          {/* ICONO */}
+
+          <div className="w-14 h-14 bg-gray-900 text-white rounded-xl flex items-center justify-center text-3xl mb-5">
+            {material.icono}
+          </div>
+
+
+          {/* CATEGORÍA */}
+
+          <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-3">
+            {material.categoria}
+          </p>
+
+
+          {/* TÍTULO */}
+
+          <h3 className="text-xl font-bold mb-4">
+            {material.titulo}
+          </h3>
+
+
+          {/* DESCRIPCIÓN */}
+
+          <p className="text-gray-600 leading-relaxed mb-6 flex-grow">
+            {material.descripcion}
+          </p>
+
+
+          {/* BOTÓN DESCARGAR */}
+
+          <a
+            href={material.archivo}
+            download
+            className="inline-flex items-center justify-center bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-gray-700 transition"
+          >
+            📥 Descargar PDF
+          </a>
+
+        </article>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
       {/* SOFTWARE */}
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
@@ -194,6 +280,7 @@ export default function Recursos() {
         </div>
 
       </section>
+      
 
     </div>
   );
