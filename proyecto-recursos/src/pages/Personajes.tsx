@@ -2,12 +2,12 @@ import { personajes } from "../data/personajes";
 import SEO from "../components/SEO";
 export default function Personajes() {
   return (
-    <SEO
+   
+    <div className="min-h-screen bg-gray-50">
+       <SEO
   title="Personajes históricos de Argentina 1930–1982"
   description="Conocé a algunos de los principales protagonistas políticos y sociales del período 1930-1982."
 />
-    <div className="min-h-screen bg-gray-50">
-
       {/* HERO */}
       <section className="bg-gray-900 text-white px-4 sm:px-6 py-14">
 

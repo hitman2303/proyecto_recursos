@@ -1,10 +1,14 @@
 
 import { historia } from "../data/historia";
-
+import SEO from "../components/SEO";
 export default function Historia() {
   return (
+     
     <div className="min-h-screen bg-gray-50">
-
+      <SEO
+  title="	Historia Argentina 1930–1982: períodos históricos "
+  description="Explorá los principales acontecimientos históricos de la Argentina entre 1930 y 1982, incluyendo golpes de Estado, elecciones, reformas y movimientos sociales."
+/>
       {/* =========================
           ENCABEZADO
       ========================= */}

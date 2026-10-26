@@ -6,12 +6,12 @@ export default function Timeline() {
   const [selected, setSelected] = useState(timeline[0]);
 
   return (
-    <SEO
+   
+    <div className="min-h-screen bg-gray-50">
+ <SEO
   title="Línea de tiempo de la Historia Argentina 1930–1982"
   description="Recorré los principales acontecimientos de la Historia Argentina entre 1930 y 1982."
 />
-    <div className="min-h-screen bg-gray-50">
-
       {/* ENCABEZADO */}
       <section className="bg-gray-900 text-white px-4 sm:px-6 py-14">
         <div className="max-w-6xl mx-auto">

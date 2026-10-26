@@ -1,9 +1,13 @@
 import { eventos } from "../data/eventos";
-
+import SEO from "../components/SEO";
 export default function Eventos() {
   return (
+   
     <div className="min-h-screen bg-gray-50">
-
+ <SEO
+  title="Acontecimientos históricos de Argentina 1930–1982"
+  description="Explorá los principales acontecimientos históricos de la Argentina entre 1930 y 1982, incluyendo golpes de Estado, elecciones, reformas y movimientos sociales."
+/>
       {/* HERO */}
       <section className="bg-gray-900 text-white px-4 sm:px-6 py-14">
         <div className="max-w-6xl mx-auto">

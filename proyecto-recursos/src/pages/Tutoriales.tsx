@@ -29,12 +29,12 @@ const cambiarTutorial = (id: number) => {
 };
 
   return (
-    <SEO
+    
+    <div className="min-h-screen bg-gray-50">
+<SEO
   title="Tutoriales del software de Historia Argentina"
   description="Aprendé a utilizar la aplicación educativa de Historia Argentina 1930-1982 mediante guías paso a paso."
 />
-    <div className="min-h-screen bg-gray-50">
-
       {/* =========================
           ENCABEZADO
       ========================= */}

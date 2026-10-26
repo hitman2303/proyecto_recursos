@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-
+import SEO from "../components/SEO";
 export default function Home() {
   return (
+  
     <div className="bg-gray-50">
-
+        <SEO
+  title="Historia Argentina 1930–1982"
+  description="Explorá los principales acontecimientos históricos de la Argentina entre 1930 y 1982, incluyendo golpes de Estado, elecciones, reformas y movimientos sociales."
+/>
       {/* =========================
           HERO
       ========================= */}

@@ -19,12 +19,12 @@ export default function Recursos() {
   );
 
   return (
-    <SEO
+   
+    <div className="min-h-screen bg-gray-50">
+       <SEO
   title="Recursos educativos de Historia Argentina 1930–1982"
   description="Accedé a materiales de estudio, herramientas interactivas, actividades y contenidos educativos para comprender la Historia Argentina entre 1930 y 1982."
 />
-    <div className="min-h-screen bg-gray-50">
-
       {/* HEADER */}
 
       <section className="bg-gray-900 text-white">
