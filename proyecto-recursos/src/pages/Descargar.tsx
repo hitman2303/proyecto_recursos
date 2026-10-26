@@ -1,6 +1,10 @@
-
+import SEO from "../components/SEO";
 export default function Descargar() {
   return (
+    <SEO
+  title="	Descargar software de Historia Argentina"
+  description="Conocé cómo descargar la aplicación educativa de Historia Argentina 1930-1982 para tu dispositivo."
+/>
     <div className="p-8 text-center">
       <h2 className="text-3xl font-bold">Descargar aplicación</h2>
 
@@ -8,5 +12,6 @@ export default function Descargar() {
         Descargar App
       </button>
     </div>
+    
   );
 }

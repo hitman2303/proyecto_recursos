@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { timeline } from "../data/timeline";
-
+import SEO from "../components/SEO";
 export default function Timeline() {
   const [selected, setSelected] = useState(timeline[0]);
 
   return (
+    <SEO
+  title="Línea de tiempo de la Historia Argentina 1930–1982"
+  description="Recorré los principales acontecimientos de la Historia Argentina entre 1930 y 1982."
+/>
     <div className="min-h-screen bg-gray-50">
 
       {/* ENCABEZADO */}

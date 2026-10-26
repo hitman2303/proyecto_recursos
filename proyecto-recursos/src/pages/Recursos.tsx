@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { recursos } from "../data/recursos";
 import { materiales } from "../data/materiales";
+import SEO from "../components/SEO";
 export default function Recursos() {
 
   const [categoria, setCategoria] = useState("Todos");
@@ -18,6 +19,10 @@ export default function Recursos() {
   );
 
   return (
+    <SEO
+  title="Recursos educativos de Historia Argentina 1930–1982"
+  description="Accedé a materiales de estudio, herramientas interactivas, actividades y contenidos educativos para comprender la Historia Argentina entre 1930 y 1982."
+/>
     <div className="min-h-screen bg-gray-50">
 
       {/* HEADER */}
