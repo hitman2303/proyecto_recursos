@@ -20,12 +20,32 @@ function Historial() {
       )
       .map((intento) => ({
         ...intento,
-        tipo: intento.tipo || "Quiz"
+        tipo: intento.tipo || "Quiz",
+        dificultad: intento.dificultad || null
       }))
       .reverse();
 
     setIntentos(intentosDelAlumno);
   }, []);
+
+  const promedio = intentos.length
+    ? Math.round(
+        intentos.reduce(
+          (total, intento) =>
+            total + Number(intento.porcentaje || 0),
+          0
+        ) / intentos.length
+      )
+    : 0;
+
+  const mejorResultado = intentos.length
+    ? Math.max(
+        ...intentos.map(
+          (intento) =>
+            Number(intento.porcentaje || 0)
+        )
+      )
+    : 0;
 
   return (
     <div className="p-6">
@@ -50,6 +70,7 @@ function Historial() {
               <p className="text-sm text-gray-500">
                 Actividades realizadas
               </p>
+
               <p className="text-2xl font-bold">
                 {intentos.length}
               </p>
@@ -59,14 +80,9 @@ function Historial() {
               <p className="text-sm text-gray-500">
                 Promedio general
               </p>
+
               <p className="text-2xl font-bold">
-                {Math.round(
-                  intentos.reduce(
-                    (total, intento) =>
-                      total + Number(intento.porcentaje || 0),
-                    0
-                  ) / intentos.length
-                )}%
+                {promedio}%
               </p>
             </div>
 
@@ -74,30 +90,33 @@ function Historial() {
               <p className="text-sm text-gray-500">
                 Mejor resultado
               </p>
+
               <p className="text-2xl font-bold">
-                {Math.max(
-                  ...intentos.map(
-                    (intento) =>
-                      Number(intento.porcentaje || 0)
-                  )
-                )}%
+                {mejorResultado}%
               </p>
             </div>
           </div>
 
           <div className="border rounded-xl overflow-x-auto bg-white">
-            <table className="w-full min-w-[600px]">
+            <table className="w-full min-w-[700px]">
               <thead className="bg-gray-50 border-b">
                 <tr>
                   <th className="text-left p-4">
                     Actividad
                   </th>
+
+                  <th className="text-left p-4">
+                    Dificultad
+                  </th>
+
                   <th className="text-left p-4">
                     Fecha
                   </th>
+
                   <th className="text-left p-4">
                     Puntaje
                   </th>
+
                   <th className="text-left p-4">
                     Porcentaje
                   </th>
@@ -108,10 +127,14 @@ function Historial() {
                 {intentos.map((intento, index) => (
                   <tr
                     key={`${intento.fecha}-${index}`}
-                    className="border-b"
+                    className="border-b hover:bg-gray-50"
                   >
                     <td className="p-4 font-medium">
                       {intento.tipo}
+                    </td>
+
+                    <td className="p-4">
+                      {intento.dificultad || "—"}
                     </td>
 
                     <td className="p-4">
@@ -122,7 +145,7 @@ function Historial() {
                       {intento.puntaje}/{intento.total}
                     </td>
 
-                    <td className="p-4">
+                    <td className="p-4 font-semibold">
                       {intento.porcentaje}%
                     </td>
                   </tr>
