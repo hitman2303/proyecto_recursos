@@ -39,7 +39,7 @@
     "appId": "com.historiaargentina.app",
     "productName": "Historia Argentina",
     "directories": {
-      "output": "release"
+    "output": "C:/HistoriaArgentinaBuild"
     },
     "files": [
       "build/**/*",
