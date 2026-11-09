@@ -1,16 +1,16 @@
 {
   "name": "historia-argentina",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
-"main": "electron/main.cjs",
-"scripts": {
+  "main": "electron/main.cjs",
+  "scripts": {
     "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "electron": "electron .",
-  "electron:dev": "npm run build && electron .",
-  "dist": "npm run build && electron-builder"
-},
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "npm run build && electron .",
+    "dist": "npm run build && electron-builder"
+  },
   "dependencies": {
     "framer-motion": "^12.40.0",
     "jspdf": "^4.2.1",
@@ -36,23 +36,22 @@
     "vite": "^8.0.12"
   },
   "build": {
-  "appId": "com.historiaargentina.app",
-  "productName": "Historia Argentina",
-  "directories": {
-    "output": "release"
-  },
-  "files": [
-    "build/**/*",
-    "electron/**/*",
-    "package.json"
-  ],
-  "win": {
-    "target": "nsis"
-  },
-  "nsis": {
-    "oneClick": false,
-    "allowToChangeInstallationDirectory": true
+    "appId": "com.historiaargentina.app",
+    "productName": "Historia Argentina",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
 }
-}
-}
-
